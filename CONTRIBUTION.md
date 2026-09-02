@@ -1,39 +1,40 @@
-# Contribution Scope
+# 개인 기여 범위 (Contribution Scope)
 
-This document clarifies the scope of my contribution to the 2024 GOAT avionics project.
+## 프로젝트 정보
 
-## Project Context
+- **소속:** 가천대학교 로켓동아리 GOAT
+- **팀:** 전자부 (Avionics)
+- **활동연도:** 2024
+- **Platform:** Raspberry Pi 기반 비행전자 시스템
 
-- Organization: Gachon University GOAT Rocket Club
-- Team: Avionics
-- Year: 2024
-- Platform: Raspberry Pi-based flight avionics system
+## 참여 영역
 
-## Areas I Participated In
+제가 프로젝트에서 참여한 영역은 다음과 같습니다.
 
-- sensor selection and sensor-interface setup
-- flight sensor data processing
-- altitude-based descent / parachute deployment decision logic
-- circuit and subsystem integration
-- launch-vehicle integration testing
-- external academic / technical events related to the GOAT project
+- 센서 선정 및 인터페이스 구성
+- 비행 센서 데이터 수집·처리
+- 고도 기반 하강/낙하산 사출 판단 로직 개발
+- 회로 및 서브시스템 통합
+- 실제 발사체 통합 테스트
+- 관련 학술·기술 행사 참가
 
-## Team-developed Areas
+## 팀 공동개발 범위
 
-The original repository contains work by multiple GOAT avionics members.
-Accordingly, this repository does not present the full source tree as my individual implementation.
+원본 Repository에는 여러 GOAT 전자부 팀원의 코드가 함께 포함되어 있습니다.
 
-## Recruiting Use
+따라서 이 개인 저장소에서는 전체 시스템을 단독 개발한 것처럼 표현하지 않고,  
+제가 직접 설명할 수 있는 담당 영역과 시스템 구조를 중심으로 정리합니다.
 
-For recruiting and interviews, I focus on the parts I can explain at implementation level:
+## 면접에서 설명 가능한 핵심
 
-1. how BMP280 / GPS / 9DOF IMU data entered the Raspberry Pi
-2. why relative-altitude baseline correction was used
-3. why moving-average filtering was introduced
-4. how consecutive descent checks reduced false deployment
-5. how the software decision was linked to GPIO / PWM actuator control
-6. what was validated during launch-vehicle integration
+1. BMP280 / GPS / 9DOF IMU 데이터를 Raspberry Pi로 어떻게 입력했는지
+2. 초기 고도 기준값을 왜 보정했는지
+3. Moving Average가 왜 필요했는지
+4. 연속 하강 조건을 왜 사용했는지
+5. 판단 결과를 GPIO / PWM 기반 Actuator와 어떻게 연결했는지
+6. 실제 발사체 통합 과정에서 무엇을 확인했는지
 
-## Accuracy Note
+## 정확성 원칙
 
-Experimental logic that existed in the team repository but was not active in the final verified deployment path is intentionally excluded from my claimed contribution.
+팀 코드에 존재했더라도 최종 사출 경로에서 활성화되지 않은 실험적 기능은  
+제 완성 기능이나 개인 성과로 주장하지 않습니다.

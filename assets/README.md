@@ -1,12 +1,16 @@
-# Assets
+# 공개 자료 추가 위치
 
-Add only public-shareable project evidence here.
+이 폴더에는 **외부 공개가 가능한 자료만** 추가합니다.
 
-Recommended:
-- rocket / launch photo
-- avionics assembly photo
-- sensor / wiring photo
-- KSPE Jeju participation photo
-- NURA Daejeon participation photo
+추천 자료:
+- 실제 로켓 / 발사 사진
+- Avionics 조립 사진
+- 센서 / 배선 사진
+- 한국추진공학회 제주 참가 사진
+- 전국대학교로켓학술대회 대전 참가 사진
 
-Do not upload personal information, credentials, or private/internal documents.
+업로드하지 않을 자료:
+- 팀원의 개인정보
+- 비공개 연락처
+- 계정/비밀번호
+- 서버 주소 및 내부 접근정보

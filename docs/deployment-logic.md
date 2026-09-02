@@ -1,27 +1,40 @@
-# Altitude-based Deployment Logic
+# 고도 기반 낙하산 사출 판단 로직
 
-## Goal
+## 목표
 
-Avoid triggering parachute deployment from a single noisy altitude measurement.
+단일 센서값의 순간적인 노이즈로 낙하산이 오작동하지 않도록  
+여러 조건을 함께 사용해 실제 하강상태를 확인하는 것이 목표입니다.
 
-## Verified Decision Structure
+## 판단 순서
 
-1. reject clearly invalid altitude values
-2. compute a moving average over recent altitude samples
-3. require altitude to be above a minimum deployment threshold
-4. compare consecutive moving-average values
-5. reset the falling counter if the trend reverses
-6. deploy only after multiple consecutive downward checks
+1. 비정상적인 고도값 제외
+2. 최근 고도값을 이용해 Moving Average 계산
+3. 사출 허용 최소고도 이상인지 확인
+4. 이전 Moving Average와 현재값 비교
+5. 하강 추세가 끊기면 Count 초기화
+6. 일정 횟수 이상 연속 하강할 때 사출 판단
 
-## Parameters Observed in the Team Implementation
+## 팀 코드에서 확인된 주요 파라미터
 
 | Parameter | Value |
 |---|---:|
-| moving-average window | 10 samples |
-| minimum deployment altitude | 100 m |
-| consecutive falling checks | 5 |
+| Moving Average Window | 10 samples |
+| Minimum Deployment Altitude | 100 m |
+| Falling Confirmation | 5 checks |
 
-## Important Limitation
+## 왜 이렇게 구성했나?
 
-The original codebase also contained attitude-related and location-related functions.
-Those paths were not active final deployment triggers in the verified code and are therefore not presented as completed features here.
+실제 로켓 비행에서는 진동과 센서 노이즈 때문에 고도값이 순간적으로 감소할 수 있습니다.
+
+따라서 한 번의 감소만으로 하강을 판단하지 않고,
+
+**Moving Average + 연속 하강 확인**
+
+을 함께 적용해 잘못된 사출 판단 가능성을 낮추는 구조를 사용했습니다.
+
+## 제한 사항
+
+원본 코드에 존재하는 IMU 자세 기반 판단 및 위치 기반 판단 기능은  
+확인된 최종 코드에서 실제 낙하산 사출 Trigger로 활성화되지 않았습니다.
+
+따라서 본 Case Study에서는 해당 기능을 완성된 기능으로 기술하지 않습니다.
