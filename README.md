@@ -191,6 +191,7 @@ Descent Detection
 전체 프로젝트 원본은 GOAT 전자부 팀 Repository에서 확인할 수 있습니다.
 
 **AvionicsOfGOAT/2024-avionics-and-ground-system**
+https://github.com/AvionicsOfGOAT 
 
 이 저장소는 팀 코드를 복제하기 위한 목적이 아니라,  
 **개인 담당 영역과 시스템 이해도를 설명하기 위한 취업용 Case Study**입니다.
