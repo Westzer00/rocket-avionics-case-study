@@ -1,4 +1,4 @@
-# Rocket Avionics & Parachute Deployment System
+# 🚀 Rocket Avionics & Parachute Deployment System 🚀
 
 > **2024 가천대학교 로켓동아리 GOAT 전자부 — 취업용 개인 Case Study**
 
