@@ -210,7 +210,7 @@ rocket-avionics-case-study/
 │   └── photos/
 │       ├── rocket-assembly.webp
 │       ├── avionics-hardware.webp
-│       └── deployment-flight.jpg
+│       └── parachute-deployment.webp
 └── .github/workflows/
     └── tests.yml
 ```
