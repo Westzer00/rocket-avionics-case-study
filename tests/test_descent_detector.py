@@ -37,3 +37,20 @@ def test_invalid_sensor_value_is_ignored():
     result = detector.update(999)
     assert result.deploy is False
     assert result.moving_average == 150
+
+def test_deployment_event_is_emitted_only_once():
+    detector = DescentDetector()
+    for _ in range(10):
+        detector.update(150)
+    results = [detector.update(value) for value in range(149, 135, -1)]
+    assert sum(int(result.deploy) for result in results) == 1
+    assert detector.deployment_latched is True
+
+def test_invalid_reading_after_deployment_does_not_retrigger():
+    detector = DescentDetector()
+    for _ in range(10):
+        detector.update(150)
+    for value in (149, 148, 147, 146, 145):
+        detector.update(value)
+    for value in (999, 120, 115):
+        assert detector.update(value).deploy is False
