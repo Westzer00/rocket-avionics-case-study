@@ -1,13 +1,23 @@
-# 🚀 Rocket Avionics & Parachute Deployment System 🚀
+# Rocket Avionics & Parachute Deployment System
 
-> **2024 가천대학교 로켓동아리 GOAT 전자부 — 취업용 개인 Case Study**
+> **2024 가천대학교 로켓동아리 GOAT 전자부 · 개인 기술 포트폴리오**
 
-2024년 GOAT 로켓 Avionics 프로젝트에서 수행한 내용을 취업용으로 정리한 저장소입니다.
+2024년 GOAT 로켓 Avionics 프로젝트에서 수행한 설계와 개발을 정리한 기술 포트폴리오입니다.
 
 전체 시스템은 **GOAT 전자부 팀 공동개발**이며, 이 저장소에서는 제가 면접에서 구현 수준으로 설명할 수 있는  
 **센서 연동 → 비행 데이터 처리 → 고도 기반 하강 판단 → 낙하산 전개 장치 제어 → 실제 발사체 통합 테스트**를 중심으로 정리했습니다.
 
 ---
+
+## 실제 제작·시험 사진
+
+| 로켓 조립·실물 | 비행전자 장치 | 비행 중 사출 장면 |
+|:---:|:---:|:---:|
+| ![로켓 조립 상태](assets/photos/rocket-assembly.webp) | ![비행전자 실물](assets/photos/avionics-hardware.webp) | ![비행 중 분리 장면](assets/photos/deployment-flight.jpg) |
+| 실제 조립 모습 | Raspberry Pi 기반 탑재 장치 | 실제 비행에서 촬영한 사진 |
+
+> 사진은 GOAT 팀 프로젝트 자료입니다. 이미지에 나온 모든 부품과 시스템을 개인이 단독 제작한 것은 아닙니다. GitHub에는 웹용 미리보기 해상도로 올렸습니다.
+
 
 ## 1. 프로젝트 개요
 
@@ -50,6 +60,18 @@ EBIMU 9DOF ─────── UART ──┘
 > 본 프로젝트는 팀 프로젝트이며, 전체 Avionics 코드의 단독 개발을 주장하지 않습니다.
 
 ---
+
+## 실행 가능한 핵심 예제와 검증
+
+낙하산 사출 판단 로직은 원본 팀 코드 전체를 복제하지 않고 독립 예제로 재구성했습니다. 센서값의 일시적인 변동을 바로 사출 신호로 사용하지 않는 구조를 확인할 수 있습니다.
+
+```bash
+python examples/descent_detector.py
+python -m pip install pytest
+python -m pytest -q
+```
+
+테스트에서는 하강 확인 횟수, 고도 기준 미달, 센서값 일시 변동, 유효하지 않은 입력을 확인합니다. GitHub Actions에서 변경 시마다 실행하도록 구성했습니다.
 
 ## 3. 기술 스택
 
@@ -172,17 +194,28 @@ Descent Detection
 ## 9. Repository 구성
 
 ```text
-.
+rocket-avionics-case-study/
 ├── README.md
 ├── CONTRIBUTION.md
-├── docs/
-│   ├── architecture.md
-│   └── deployment-logic.md
 ├── examples/
 │   └── descent_detector.py
-└── assets/
-    └── README.md
+├── tests/
+│   └── test_descent_detector.py
+├── docs/
+│   ├── architecture.md
+│   ├── deployment-logic.md
+│   └── change-log.md
+├── assets/
+│   ├── README.md
+│   └── photos/
+│       ├── rocket-assembly.webp
+│       ├── avionics-hardware.webp
+│       └── deployment-flight.jpg
+└── .github/workflows/
+    └── tests.yml
 ```
+
+`examples`는 독립 재현 로직, `tests`는 검증 코드, `docs`는 설계와 변경 이력, `assets/photos`는 공개 가능한 팀 프로젝트 사진입니다.
 
 ---
 
@@ -198,12 +231,9 @@ https://github.com/AvionicsOfGOAT
 
 ---
 
-## 11. 추가 예정 자료
+## 11. 사진 공개 범위와 유지보수
 
-공개 가능한 범위에서 다음 자료를 추가할 예정입니다.
-
-- 실제 로켓/발사 사진
-- Avionics 조립 사진
-- 센서/배선 사진
-- 제주 한국추진공학회 참가 사진
-- 대전 로켓학술대회 참가 사진
+- 업로드 사진은 실제 팀 프로젝트에서 제공된 장면이며 웹에서 보기 좋은 크기로 압축했습니다.
+- 프로젝트 기록과 담당 역할은 [CONTRIBUTION.md](CONTRIBUTION.md)에서 확인할 수 있습니다.
+- 사진과 코드 모두 내부 연락처, 인증정보 및 비공개 자료를 공개하지 않는 범위에서 정리했습니다.
+- 변경 내역은 [docs/change-log.md](docs/change-log.md)에 남깁니다.
