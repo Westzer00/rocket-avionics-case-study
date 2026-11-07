@@ -16,6 +16,12 @@
 | ![로켓 조립 상태](assets/photos/rocket-assembly.webp) | ![비행전자 실물](assets/photos/avionics-hardware.webp) | ![실제 비행 중 낙하산 사출 장면](assets/photos/parachute-deployment.webp) |
 | 실제 조립 모습 | Raspberry Pi 기반 탑재 장치 | 실제 비행 중 분리·사출 장면 |
 
+**추가 비행 사진 — 낙하산 전개 이후 하강 장면**
+
+![낙하산 전개 후 비행 장면](assets/photos/parachute-in-flight.webp)
+
+[이미지 크게 보기](assets/photos/parachute-in-flight.webp)
+
 > 사진은 GOAT 팀 프로젝트 자료입니다. 이미지에 나온 모든 부품과 시스템을 개인이 단독 제작한 것은 아닙니다. GitHub에는 웹용 미리보기 해상도로 올렸습니다.
 
 
@@ -210,7 +216,8 @@ rocket-avionics-case-study/
 │   └── photos/
 │       ├── rocket-assembly.webp
 │       ├── avionics-hardware.webp
-│       └── parachute-deployment.webp
+│       ├── parachute-deployment.webp
+│       └── parachute-in-flight.webp
 └── .github/workflows/
     └── tests.yml
 ```
