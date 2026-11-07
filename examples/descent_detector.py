@@ -33,8 +33,14 @@ class DescentDetector:
         self.history = deque(maxlen=window_size)
         self.previous_average = None
         self.falling_count = 0
+        # 공개용 예제의 일회성 이벤트 안전 장치(원본 팀 코드와 별도).
+        self.deployment_latched = False
 
     def update(self, altitude: float) -> DetectionResult:
+        if self.deployment_latched:
+            # 실제 GPIO를 호출하지 않는 예제에서도 중복 전개 이벤트를 막는다.
+            return DetectionResult(self.previous_average, self.falling_count, False)
+
         # 1. 비정상 고도값 제외
         if not self.min_valid_altitude <= altitude <= self.max_valid_altitude:
             return DetectionResult(
@@ -71,6 +77,8 @@ class DescentDetector:
 
         # 5. 연속 하강 횟수 충족 시 사출 판단
         deploy = self.falling_count >= self.confirmation_count
+        if deploy:
+            self.deployment_latched = True
 
         return DetectionResult(
             current_average,

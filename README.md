@@ -4,7 +4,7 @@
 
 실제 발사체의 **센서 데이터 수집 → 고도 기반 하강 판단 → 낙하산 전개 장치 제어**를 설계·시험한 팀 프로젝트입니다.
 
-**담당 업무:** 센서 선정·연동, Raspberry Pi 데이터 처리, 연속 하강 조건을 이용한 사출 판단 로직, 회로 통합 및 발사 시험.
+**개인 참여:** 센서 선정·연동, Raspberry Pi 데이터 처리, 하강 판단 조건 검토, 회로·시스템 통합 및 발사 시험. 하강 판단 함수는 팀 원본 저장소의 다른 기여자 커밋에서도 확인되므로, 개인 단독 개발로 표시하지 않습니다. [개인 참여 범위](CONTRIBUTION.md)
 
 ---
 
@@ -56,7 +56,7 @@ EBIMU 9DOF ─────── UART ──┘
 
 - 비행에 사용할 **센서 선정 및 인터페이스 연동**
 - BMP280·GPS·9DOF IMU의 **센서 데이터 수집·처리**
-- **고도 기반 낙하산 사출 판단 로직 개발·검증**
+- **고도 기반 하강 판단 조건 검토·시스템 통합·시험 참여**
 - 회로 및 전자부 시스템 통합
 - 실제 발사체 통합 테스트 참여
 - **2024 한국추진공학회 춘계학술대회 NURA 세션(제주)** 참가
@@ -66,7 +66,7 @@ EBIMU 9DOF ─────── UART ──┘
 
 ## 3. 실행 가능한 판단 로직과 테스트
 
-낙하산 사출 판단 로직은 원본 팀 코드 전체를 복제하지 않고 독립 예제로 재구성했습니다. 센서값의 일시적인 변동을 바로 사출 신호로 사용하지 않는 구조를 확인할 수 있습니다.
+낙하산 사출 판단 로직은 원본 팀 코드 전체를 복제하지 않고 독립 예제로 재구성했습니다. 센서값의 일시적인 변동을 바로 사출 신호로 사용하지 않는 구조를 확인할 수 있습니다. **공개 예제에는 중복 전개 이벤트를 차단하는 일회성 래치를 추가**했지만, 이는 2024년 팀 비행 코드 전체의 안전성을 검증한 결과가 아닙니다.
 
 ```bash
 python examples/descent_detector.py
@@ -74,7 +74,7 @@ python -m pip install pytest
 python -m pytest -q
 ```
 
-테스트에서는 하강 확인 횟수, 고도 기준 미달, 센서값 일시 변동, 유효하지 않은 입력을 확인합니다. GitHub Actions에서 변경 시마다 실행하며, [실제 테스트 기록](https://github.com/Westzer00/rocket-avionics-case-study/actions)에서 결과를 확인할 수 있습니다.
+테스트에서는 하강 확인 횟수, 고도 기준 미달, 센서값 일시 변동, 유효하지 않은 입력 및 일회성 전개 이벤트를 확인합니다. GitHub Actions에서 변경 시마다 실행하며, [실제 테스트 기록](https://github.com/Westzer00/rocket-avionics-case-study/actions)에서 결과를 확인할 수 있습니다.
 
 ## 4. 사용 기술
 
@@ -202,7 +202,8 @@ rocket-avionics-case-study/
 ├── examples/
 │   └── descent_detector.py
 ├── tests/
-│   └── test_descent_detector.py
+│   ├── test_descent_detector.py
+│   └── test_photo_assets.py
 ├── docs/
 │   ├── architecture.md
 │   ├── deployment-logic.md
@@ -226,8 +227,9 @@ rocket-avionics-case-study/
 
 전체 프로젝트 원본은 GOAT 전자부 팀 Repository에서 확인할 수 있습니다.
 
-**AvionicsOfGOAT/2024-avionics-and-ground-system**
-https://github.com/AvionicsOfGOAT 
+**[AvionicsOfGOAT/2024-avionics-and-ground-system](https://github.com/AvionicsOfGOAT/2024-avionics-and-ground-system)**
+
+원본의 당시 개발 이력과 현재 공개 브랜치는 구별합니다. 하드웨어 실행 코드에서 확인된 주의사항은 [원본 코드 검토 기록](docs/original-repo-review.md)에 정리했습니다. 
 
 ---
 
