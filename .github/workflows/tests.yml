@@ -1,4 +1,4 @@
-name: Rocket descent-detector example tests
+name: Rocket code and flight assets checks
 on:
   push:
     branches: [main]
@@ -12,8 +12,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install test dependencies
-        run: python -m pip install pytest
-      - name: Test independent descent detector
-        run: python -m pytest -q
-      - name: Run example
+        run: python -m pip install pytest Pillow
+      - name: Python syntax
+        run: python -m compileall -q examples tests
+      - name: Descent logic and image tests
+        run: python -m pytest -q -s
+      - name: Run independent example
         run: python examples/descent_detector.py > /dev/null
