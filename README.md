@@ -227,7 +227,7 @@ rocket-avionics-case-study/
 https://github.com/AvionicsOfGOAT 
 
 이 저장소는 팀 코드를 복제하기 위한 목적이 아니라,  
-**개인 담당 영역과 시스템 이해도를 설명하기 위한 취업용 Case Study**입니다.
+**개인 담당 영역과 시스템 이해도를 기술적으로 정리한 프로젝트 포트폴리오**입니다.
 
 ---
 
